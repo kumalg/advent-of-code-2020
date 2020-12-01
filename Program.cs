@@ -7,8 +7,9 @@ namespace advent_of_code_2020 {
         static void Main(string[] args) => ShowDayResult(new Day01());
 
         static void ShowDayResult(Day day) {
-            Console.WriteLine(day.FirstStar());
-            Console.WriteLine(day.SecondStar());
+            Console.WriteLine($"{day.GetType().Name}");
+            Console.WriteLine($"Part 1: {day.FirstStar()}");
+            Console.WriteLine($"Part 2: {day.SecondStar()}");
         }
     }
 }
