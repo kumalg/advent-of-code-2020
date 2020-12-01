@@ -7,9 +7,9 @@ namespace advent_of_code_2020 {
             ShowResult();
         }
 
-        static async void ShowResult() {
-            Console.WriteLine(await Day01.FirstStar());
-            Console.WriteLine(await Day01.SecondStar());
+        static void ShowResult() {
+            Console.WriteLine(Day01.FirstStar());
+            Console.WriteLine(Day01.SecondStar());
         }
     }
 }
