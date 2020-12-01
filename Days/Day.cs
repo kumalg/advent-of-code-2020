@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 
 namespace advent_of_code_2020.Days {
     public abstract class Day : IDay {
-        private IList<string> _inputLines;
-        public IList<string> InputLines => _inputLines ??= File.ReadAllLines($"../../../Days/{GetType().Name}/input.txt").ToList();
+        private string[] _inputLines;
+        public string[] InputLines => _inputLines ??= File.ReadAllLines($"../../../Days/{GetType().Name}/input.txt");
         public abstract string FirstStar();
         public abstract string SecondStar();
     }
