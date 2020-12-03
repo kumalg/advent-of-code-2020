@@ -1,7 +1,7 @@
 ﻿namespace advent_of_code_2020.Days {
-    public interface IDay {
+    public interface IDay<T> {
         string[] InputLines { get; }
-        object FirstStar();
-        object SecondStar();
+        T FirstStar();
+        T SecondStar();
     }
 }

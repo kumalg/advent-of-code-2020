@@ -2,8 +2,8 @@
 using System.Linq;
 
 namespace advent_of_code_2020.Days.Day01 {
-    public class Day01 : Day {
-        public override object FirstStar() {
+    public class Day01 : Day<int> {
+        public override int FirstStar() {
             var report = InputLines.Select(int.Parse);
             return report
                     .SelectMany((x, i) => report.Skip(i + 1), Tuple.Create)
@@ -12,7 +12,7 @@ namespace advent_of_code_2020.Days.Day01 {
                     .First();
         }
 
-        public override object SecondStar() {
+        public override int SecondStar() {
             var report = InputLines.Select(int.Parse);
             return report
                 .SelectMany((x, i) => report.Skip(i + 1)
