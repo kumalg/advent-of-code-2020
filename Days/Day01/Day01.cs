@@ -6,10 +6,10 @@ namespace advent_of_code_2020.Days.Day01 {
         public override int FirstStar() {
             var report = InputLines.Select(int.Parse);
             return report
-                    .SelectMany((x, i) => report.Skip(i + 1), Tuple.Create)
-                    .Where(t => t.Item1 + t.Item2 == 2020)
-                    .Select(t => t.Item1 * t.Item2)
-                    .First();
+                .SelectMany((x, i) => report.Skip(i + 1), Tuple.Create)
+                .Where(t => t.Item1 + t.Item2 == 2020)
+                .Select(t => t.Item1 * t.Item2)
+                .First();
         }
 
         public override int SecondStar() {
