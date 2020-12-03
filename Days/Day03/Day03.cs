@@ -4,9 +4,7 @@ namespace advent_of_code_2020.Days.Day03 {
     public class Day03 : Day {
         private long TreesForSlope(int right, int down) => InputLines
             .Where((line, i) => i % down == 0 && i != 0)
-            .Select((line, index) => string
-                .Concat(Enumerable.Repeat(line, (index + 1) * right / line.Length + 1))
-                .ElementAt((index + 1) * right))
+            .Select((line, index) => line.ElementAt((index + 1) * right % line.Length))
             .Count(c => c == '#');
 
         public override string FirstStar() => TreesForSlope(3, 1).ToString();
