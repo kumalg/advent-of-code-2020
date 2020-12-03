@@ -7,7 +7,7 @@ namespace advent_of_code_2020.Days.Day03 {
                 .Where((line, i) => i % down == 0 && i != 0)
                 .Select((line, index) => string
                     .Concat(Enumerable.Repeat(line, (index + 1) * right / line.Length + 1))
-                    .ToCharArray()[(index + 1) * right])
+                    .ElementAt((index + 1) * right))
                 .Count(c => c == '#');
         }
 
