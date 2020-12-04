@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace advent_of_code_2020.Days.Day04 {
     public class Day04 : Day<int> {
         private static readonly string[] mandatoryFields = new[] { "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid" };
-        private static readonly string[] eyeColors = new[] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
+        private static readonly Regex eclRegex = new Regex(@"^((amb)|(blu)|(brn)|(gry)|(grn)|(hzl)|(oth))$");
         private static readonly Regex hclRegex = new Regex(@"^#[a-f-0-9]{6}$");
         private static readonly Regex pidRegex = new Regex(@"^\d{9}$");
 
@@ -15,7 +15,7 @@ namespace advent_of_code_2020.Days.Day04 {
             "byr" => int.Parse(pair.Value) is >= 1920 and <= 2002,
             "iyr" => int.Parse(pair.Value) is >= 2010 and <= 2020,
             "eyr" => int.Parse(pair.Value) is >= 2020 and <= 2030,
-            "ecl" => eyeColors.Contains(pair.Value),
+            "ecl" => eclRegex.IsMatch(pair.Value),
             "hcl" => hclRegex.IsMatch(pair.Value),
             "pid" => pidRegex.IsMatch(pair.Value),
             "cid" => true,
