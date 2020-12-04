@@ -5,6 +5,7 @@
     }
 
     public interface IDay<T> : IDay {
+        string InputText { get; }
         string[] InputLines { get; }
         T FirstStar();
         T SecondStar();
