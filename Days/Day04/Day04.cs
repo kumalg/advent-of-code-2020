@@ -9,10 +9,8 @@ namespace advent_of_code_2020.Days.Day04 {
             "iyr" => int.Parse(pair.Value) is >= 2010 and <= 2020,
             "eyr" => int.Parse(pair.Value) is >= 2020 and <= 2030,
             "hgt" => pair.Value.EndsWith("cm")
-                        ? int.Parse(pair.Value.Substring(0, pair.Value.Length - 2)) is >= 150 and <= 193
-                        : pair.Value.EndsWith("in")
-                            ? int.Parse(pair.Value.Substring(0, pair.Value.Length - 2)) is >= 59 and <= 76
-                            : false,
+                        ? int.Parse(pair.Value[0..^2]) is >= 150 and <= 193
+                        : pair.Value.EndsWith("in") && int.Parse(pair.Value[0..^2]) is >= 59 and <= 76,
             "hcl" => new Regex(@"^#[a-f-0-9]{6}$").IsMatch(pair.Value),
             "ecl" => "amb|blu|brn|gry|grn|hzl|oth".Split("|").Contains(pair.Value),
             "pid" => pair.Value.Length == 9 && new Regex(@"\d{9}").IsMatch(pair.Value),
