@@ -21,8 +21,8 @@ namespace advent_of_code_2020.Days.Day04 {
 
         private IEnumerable<Dictionary<string, string>> Passports => Input
             .Split("\n\n")
-            .Select(p => new Regex(@"[\s]")
-                .Split(p).Where(p => p != "")
+            .Select(p => p
+                .Split()
                 .Select(kv => kv.Split(":"))
                 .ToDictionary(d => d[0], d => d[1]))
             .Where(p => !mandatoryFields.Except(p.Select(l => l.Key)).Any());
