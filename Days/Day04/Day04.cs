@@ -33,7 +33,6 @@ namespace advent_of_code_2020.Days.Day04 {
             .Count(p => !mandatoryFields.Except(p.Select(l => l.Key)).Any());
 
         public override int SecondStar() => Passports
-            .Where(p => !mandatoryFields.Except(p.Select(l => l.Key)).Any())
             .Count(p => p.Select(ValidateKey).All(k => k));
     }
 }
