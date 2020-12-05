@@ -2,15 +2,15 @@
 
 namespace advent_of_code_2020.Days.Day05 {
     public class Day05 : Day<int> {
-        private int Row(string regionDirections) => regionDirections.Aggregate((range: 128, max: 128), (a, b) => {
-            return (a.range / 2, a.max - (b == 'F' ? a.range / 2 : 0));
-        }).max - 1;
+        private static int Position(string regionDirections, int maxValue, char decreaseLetter) => regionDirections
+            .Aggregate((Range: maxValue, Max: maxValue), (a, b) => (a.Range / 2, a.Max - (b == decreaseLetter ? a.Range / 2 : 0)))
+            .Max - 1;
 
-        private int Column(string regionDirections) => regionDirections.Aggregate((range: 8, max: 8), (a, b) => {
-            return (a.range / 2, a.max - (b == 'L' ? a.range / 2 : 0));
-        }).max - 1;
+        private static int Row(string regionDirections) => Position(regionDirections, 128, 'F');
 
-        private int Id(string line) => 8 * Row(line[0..7]) + Column(line[7..]);
+        private static int Column(string regionDirections) => Position(regionDirections, 8, 'L');
+
+        private int Id(string line) => 8 * Row(line[..7]) + Column(line[^3..]);
 
         public override int FirstStar() => InputLines.Max(Id);
 
