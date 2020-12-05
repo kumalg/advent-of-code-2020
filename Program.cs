@@ -1,10 +1,10 @@
 ﻿using System;
 using advent_of_code_2020.Days;
-using advent_of_code_2020.Days.Day04;
+using advent_of_code_2020.Days.Day05;
 
 namespace advent_of_code_2020 {
     class Program {
-        static void Main(string[] args) => ShowDayResult(new Day04());
+        static void Main(string[] args) => ShowDayResult(new Day05());
 
         static void ShowDayResult(IDay day) {
             Console.WriteLine($"{ day.GetType().Name }");
