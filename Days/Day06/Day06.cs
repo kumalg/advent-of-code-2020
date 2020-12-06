@@ -5,7 +5,8 @@ namespace advent_of_code_2020.Days.Day06 {
 
         public override int FirstStar() => InputText
             .Split("\n\n")
-            .Sum(l => l.Replace("\n", "")
+            .Sum(l => l
+                .Replace("\n", "")
                 .ToCharArray()
                 .Distinct()
                 .Count());
