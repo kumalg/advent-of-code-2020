@@ -7,7 +7,6 @@ namespace advent_of_code_2020.Days.Day06 {
             .Split("\n\n")
             .Sum(l => l
                 .Replace("\n", "")
-                .ToCharArray()
                 .Distinct()
                 .Count());
 
