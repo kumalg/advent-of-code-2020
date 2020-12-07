@@ -14,7 +14,7 @@ namespace advent_of_code_2020.Days.Day07 {
             .ToDictionary(
                 line => line.ElementAt(0),
                 line => line.ElementAt(1) switch {
-                    "no other bags" => null,
+                    "no other bags" => new Dictionary<string, int>(),
                     _ => DictioraryFromString(line.ElementAt(1))
                 }
             );
@@ -34,20 +34,16 @@ namespace advent_of_code_2020.Days.Day07 {
                     GoDeeper(el.Key, keysContains);
         }
 
-        public int Count(string key) {
-            var bagsInside = Rules[key];
-
-            return 1 + (bagsInside != null ? bagsInside.Select(b => b.Value * Count(b.Key)).Sum() : 0);
-        }
-
         public override int FirstStar() {
             var keysContains = new HashSet<string>();
 
             GoDeeper(Key, keysContains);
-            
+
             return keysContains.Count;
         }
 
-        public override int SecondStar() => Count(Key) - 1;
+        public int CountBags(string key) => 1 + Rules[key].Select(b => b.Value * CountBags(b.Key)).Sum();
+
+        public override int SecondStar() => CountBags(Key) - 1;
     }
 }
