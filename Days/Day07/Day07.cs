@@ -22,10 +22,10 @@ namespace advent_of_code_2020.Days.Day07 {
         public static IDictionary<string, int> DictioraryFromString(string line) => line
             .Replace(".", "")
             .Split(", ")
-            .Select(m => LineRegex.Match(m).Groups.Values.Skip(1))
+            .Select(m => LineRegex.Match(m).Groups.Values.Skip(1).Select(v => v.Value))
             .ToDictionary(
-                m => m.ElementAt(1).Value,
-                m => int.Parse(m.ElementAt(0).Value)
+                m => m.ElementAt(1),
+                m => int.Parse(m.ElementAt(0))
             );
 
         public void GoDeeper(string key, HashSet<string> keysContains) {
