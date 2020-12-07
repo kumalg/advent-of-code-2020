@@ -20,7 +20,6 @@ namespace advent_of_code_2020.Days.Day07 {
             );
 
         public static IDictionary<string, int> DictioraryFromString(string line) => line
-            .Replace(".", "")
             .Split(", ")
             .Select(m => LineRegex.Match(m).Groups.Values.Skip(1).Select(v => v.Value))
             .ToDictionary(
