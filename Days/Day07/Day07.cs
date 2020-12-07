@@ -42,7 +42,7 @@ namespace advent_of_code_2020.Days.Day07 {
             return keysContains.Count;
         }
 
-        public int CountBags(string key) => 1 + Rules[key].Select(b => b.Value * CountBags(b.Key)).Sum();
+        public int CountBags(string key) => 1 + Rules[key].Sum(b => b.Value * CountBags(b.Key));
 
         public override int SecondStar() => CountBags(Key) - 1;
     }
