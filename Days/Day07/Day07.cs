@@ -4,18 +4,19 @@ using System.Text.RegularExpressions;
 
 namespace advent_of_code_2020.Days.Day07 {
     public class Day07 : Day<int> {
-        static readonly Regex MainRegex = new Regex(@"(.+) (?:bags contain) (?:(?: no other bags)|(.+))");
+        static readonly Regex MainRegex = new Regex(@"(.+) (?:bags contain) (.+)[.]");
         static readonly Regex LineRegex = new Regex(@"(\d+) (.+) bag(?:s|)");
         static readonly string Key = "shiny gold";
 
         IDictionary<string, IDictionary<string, int>> _rules;
         IDictionary<string, IDictionary<string, int>> Rules => _rules ??= InputLines
-            .Select(line => MainRegex.Match(line).Groups.Values.Skip(1))
+            .Select(line => MainRegex.Match(line).Groups.Values.Skip(1).Select(v => v.Value))
             .ToDictionary(
-                line => line.ElementAt(0).Value,
-                line => line.ElementAt(1).Value.StartsWith("no")
-                    ? null
-                    : DictioraryFromString(line.ElementAt(1).Value)
+                line => line.ElementAt(0),
+                line => line.ElementAt(1) switch {
+                    "no other bags" => null,
+                    _ => DictioraryFromString(line.ElementAt(1))
+                }
             );
 
         public static IDictionary<string, int> DictioraryFromString(string line) => line
