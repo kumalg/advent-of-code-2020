@@ -24,8 +24,16 @@ namespace advent_of_code_2020.Days.Day12 {
                     'S' => this with { Y = Y - value },
                     'E' => this with { X = X + value },
                     'W' => this with { X = X - value },
-                    'L' => this with { Direction = (Direction - value / 90) < Direction.North ? (Direction + 4 - value / 90) : (Direction - value / 90) },
-                    'R' => this with { Direction = (Direction + value / 90) > Direction.West ? (Direction - 4 + value / 90) : (Direction + value / 90) },
+                    'L' => this with {
+                        Direction = (Direction - value / 90) < Direction.North
+                            ? (Direction + 4 - value / 90)
+                            : (Direction - value / 90)
+                    },
+                    'R' => this with {
+                        Direction = (Direction + value / 90) > Direction.West
+                            ? (Direction - 4 + value / 90)
+                            : (Direction + value / 90)
+                    },
                     'F' => Direction switch {
                         Direction.North => this with { Y = Y + value },
                         Direction.South => this with { Y = Y - value },
@@ -40,7 +48,7 @@ namespace advent_of_code_2020.Days.Day12 {
         private record Ferry2 {
             public int X { get; init; }
             public int Y { get; init; }
-            public Waypoint Waypoint { get; init; }
+            public (int X, int Y) Waypoint { get; init; }
 
             public Ferry2 Next(string command) {
                 var action = command.First();
@@ -51,58 +59,20 @@ namespace advent_of_code_2020.Days.Day12 {
                         X = X + value * Waypoint.X,
                         Y = Y + value * Waypoint.Y
                     },
-                    'N' => this with {
-                        Waypoint = Waypoint with { Y = Waypoint.Y + value }
-                    },
-                    'S' => this with {
-                        Waypoint = Waypoint with { Y = Waypoint.Y - value }
-                    },
-                    'E' => this with {
-                        Waypoint = Waypoint with { X = Waypoint.X + value }
-                    },
-                    'W' => this with {
-                        Waypoint = Waypoint with { X = Waypoint.X - value }
-                    },
+                    'N' => this with { Waypoint = (Waypoint.X, Waypoint.Y + value) },
+                    'S' => this with { Waypoint = (Waypoint.X, Waypoint.Y - value) },
+                    'E' => this with { Waypoint = (Waypoint.X + value, Waypoint.Y) },
+                    'W' => this with { Waypoint = (Waypoint.X - value, Waypoint.Y) },
                     'R' => value switch {
-                        90 => this with {
-                            Waypoint = Waypoint with {
-                                X = Waypoint.Y,
-                                Y = -Waypoint.X
-                            }
-                        },
-                        180 => this with {
-                            Waypoint = Waypoint with {
-                                X = -Waypoint.X,
-                                Y = -Waypoint.Y
-                            }
-                        },
-                        270 => this with {
-                            Waypoint = Waypoint with {
-                                X = -Waypoint.Y,
-                                Y = Waypoint.X
-                            }
-                        },
+                        90 => this with { Waypoint = (Waypoint.Y, -Waypoint.X) },
+                        180 => this with { Waypoint = (-Waypoint.X, -Waypoint.Y) },
+                        270 => this with { Waypoint = (-Waypoint.Y, Waypoint.X) },
                         _ => this
                     },
                     'L' => value switch {
-                        90 => this with {
-                            Waypoint = Waypoint with {
-                                X = -Waypoint.Y,
-                                Y = Waypoint.X
-                            }
-                        },
-                        180 => this with {
-                            Waypoint = Waypoint with {
-                                X = -Waypoint.X,
-                                Y = -Waypoint.Y
-                            }
-                        },
-                        270 => this with {
-                            Waypoint = Waypoint with {
-                                X = Waypoint.Y,
-                                Y = -Waypoint.X
-                            }
-                        },
+                        90 => this with { Waypoint = (-Waypoint.Y, Waypoint.X) },
+                        180 => this with { Waypoint = (-Waypoint.X, -Waypoint.Y) },
+                        270 => this with { Waypoint = (Waypoint.Y, -Waypoint.X) },
                         _ => this
                     },
                     _ => this
@@ -116,21 +86,19 @@ namespace advent_of_code_2020.Days.Day12 {
         }
 
         public override long FirstStar() {
-            var lastPos = new Ferry { X = 0, Y = 0, Direction = Direction.East };
+            var ferry = new Ferry { X = 0, Y = 0, Direction = Direction.East };
 
-            foreach (var command in InputLines) {
-                lastPos = lastPos.Next(command);
-            }
+            foreach (var command in InputLines)
+                ferry = ferry.Next(command);
 
-            return Math.Abs(lastPos.X) + Math.Abs(lastPos.Y);
+            return Math.Abs(ferry.X) + Math.Abs(ferry.Y);
         }
 
         public override long SecondStar() {
-            var ferry = new Ferry2 { X = 0, Y = 0, Waypoint = new Waypoint { X = 10, Y = 1 } };
+            var ferry = new Ferry2 { X = 0, Y = 0, Waypoint = (10, 1) };
 
-            foreach (var command in InputLines) {
+            foreach (var command in InputLines)
                 ferry = ferry.Next(command);
-            }
 
             return Math.Abs(ferry.X) + Math.Abs(ferry.Y);
         }
