@@ -3,7 +3,7 @@ using advent_of_code_2020.Days;
 
 namespace advent_of_code_2020 {
     class Program {
-        static void Main(string[] args) => ShowDayResult(new Day16());
+        static void Main(string[] args) => ShowDayResult(new Day17());
 
         static void ShowDayResult(IDay day) {
             Console.WriteLine($"{ day.GetType().Name }");

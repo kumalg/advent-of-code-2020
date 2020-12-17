@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -62,7 +61,6 @@ namespace advent_of_code_2020.Days {
 
             tickets.Add(myTicket);
 
-            //foreach (var field in fields) {
             var count = fields.Count();
             for (var i = 0; i < count; i++) {
 
@@ -71,15 +69,12 @@ namespace advent_of_code_2020.Days {
                     var fieldValid = nums.All(tn => tn >= f.FirstRange.Min && tn <= f.FirstRange.Max || tn >= f.SecondRange.Min && tn <= f.SecondRange.Max);
 
                     if (fieldValid) {
-                        //orderedFields.Add(f);
-                        //fields.Remove(f);
                         if (dic.ContainsKey(i)) {
                             dic[i].Add(f);
                         }
                         else {
                             dic[i] = new[] { f }.ToList();
                         }
-                        //break;
                     }
                 }
             }
@@ -97,15 +92,10 @@ namespace advent_of_code_2020.Days {
                 }
             }
 
-            var hmm = orderedFields
+            return orderedFields
                 .Where(t => t.Item2.Name.Contains("departure"))
                 .Select(t => myTicket[t.pos])
-                .ToList();
-
-            return hmm
-                  .Aggregate((a, b) => a * b);
+                .Aggregate((a, b) => a * b);
         }
     }
 }
-
-//668844166853 too high
