@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace advent_of_code_2020.Days {
-    public class Day15 : Day<long> {
-        public override long FirstStar() {
+    public class Day15 : Day<int> {
+        public override int FirstStar() {
             var moves = InputLines.First().Split(',').Select(int.Parse).ToList();
 
             while (moves.Count < 2020) {
@@ -21,27 +20,22 @@ namespace advent_of_code_2020.Days {
             return moves.Last();
         }
 
-        public override long SecondStar() {
+        public override int SecondStar() {
             var moves = InputLines.First().Split(',').Select(int.Parse).ToList();
 
             var dic = moves
                 .Select((val, ind) => (val, pos: ind + 1))
-                .ToDictionary(i => i.val, i => new List<int>() { i.pos });
+                .ToDictionary(i => i.val, i => new[] { i.pos });
             var movesCount = moves.Count;
             var last = moves.Last();
 
             while (movesCount < 30_000_000) {
-                if (dic[last].Count < 2) {
-                    last = 0;
-                }
-                else {
-                    var latest = dic[last].Skip(dic[last].Count - 2);
-                    last = latest.Last() - latest.First();
-                }
-                if (!dic.ContainsKey(last)) {
-                    dic[last] = new List<int>();
-                }
-                dic[last].Add(++movesCount);
+                last = dic[last].Length < 2
+                    ? 0
+                    : dic[last].Last() - dic[last].First();
+                dic[last] = !dic.ContainsKey(last)
+                    ? new[] { ++movesCount }
+                    : new[] { dic[last].Last(), ++movesCount };
             }
 
             return last;
