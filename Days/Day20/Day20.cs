@@ -93,7 +93,7 @@ namespace advent_of_code_2020.Days {
             return tilesNeighbors.Aggregate((a, b) => a * b);
         }
 
-        private (int X, int Y) Shift(Tile from, Tile to) {
+        private static (int X, int Y) Shift(Tile from, Tile to) {
             if (from.RightSide == to.LeftSide) return (1, 0);
             if (from.LeftSide == to.RightSide) return (-1, 0);
             if (from.TopSide == to.BottomSide) return (0, 1);
@@ -101,12 +101,9 @@ namespace advent_of_code_2020.Days {
             return (0, 0);
         }
 
-        private static List<string> FlipPicture(IList<string> picture) {
-            return picture.Reverse().ToList();
-        }
+        private static List<string> FlipPicture(IList<string> picture) => picture.Reverse().ToList();
 
-        private static List<string> RotatePicture(IList<string> picture) {
-            return Enumerable
+        private static List<string> RotatePicture(IList<string> picture) => Enumerable
                 .Range(0, picture.Count)
                 .Select(i => string.Join("", picture
                     .Select(c => c[i])
@@ -114,7 +111,6 @@ namespace advent_of_code_2020.Days {
                     .ToList())
                 )
                 .ToList();
-        }
 
         private static int SeaMonstersCount(IList<string> picture) {
             var yMax = picture.Count - seaMonsterPattern.Length;
