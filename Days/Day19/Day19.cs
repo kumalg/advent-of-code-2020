@@ -65,25 +65,8 @@ namespace advent_of_code_2020.Days {
             var rule31Options = RuleOptions(rules[31], rules);
 
             return messages.Count(message => {
-                var count42 = 0;
-                var count31 = 0;
-                var remainingMessage = message;
-
-                var is42match = rule42Options.FirstOrDefault(o => remainingMessage.StartsWith(o));
-                while (is42match != null) {
-                    remainingMessage = remainingMessage[is42match.Length..];
-                    is42match = rule42Options.FirstOrDefault(o => remainingMessage.StartsWith(o));
-                    count42++;
-                }
-
-                var is31match = rule31Options.FirstOrDefault(o => remainingMessage.EndsWith(o));
-                while (is31match != null) {
-                    remainingMessage = remainingMessage[..^is31match.Length];
-                    is31match = rule31Options.FirstOrDefault(o => remainingMessage.EndsWith(o));
-                    count31++;
-                }
-
-                return remainingMessage == "" && count42 > count31 && count31 > 0;
+                var regex = new Regex($"^({ string.Join("|", rule42Options) })+({ string.Join("|", rule31Options) })+$").Match(message);
+                return regex.Success && regex.Groups[1].Captures.Count > regex.Groups[2].Captures.Count;
             });
         }
     }
