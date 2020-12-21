@@ -49,7 +49,6 @@ namespace advent_of_code_2020.Days {
                 .ToList()
                 .Aggregate((sum, current) => sum
                     .Where(ss => !string.IsNullOrEmpty(ss))
-                    .Distinct()
                     .SelectMany(s => current
                         .Where(cc => !string.IsNullOrEmpty(cc))
                         .Distinct()
@@ -62,9 +61,7 @@ namespace advent_of_code_2020.Days {
 
         public override int FirstStar() {
             var (rules, messages) = GetRulesAndMessages(InputText);
-
-            var rule0Options = RuleOptions(rules[0], rules);
-            return messages.Count(s => rule0Options.Contains(s));
+            return RuleOptions(rules[0], rules).Intersect(messages).Count();
         }
 
         public override int SecondStar() {
@@ -76,9 +73,7 @@ namespace advent_of_code_2020.Days {
             var rule42Options = RuleOptions(rules[42], rules);
             var rule31Options = RuleOptions(rules[31], rules);
 
-            var county = 0;
-
-            foreach(var message in messages) {
+            return messages.Count(message => {
                 var count42 = 0;
                 var count31 = 0;
                 var remainingMessage = message;
@@ -97,12 +92,8 @@ namespace advent_of_code_2020.Days {
                     count31++;
                 }
 
-                if (remainingMessage == "" && count42 > 0 & count31 > 0 && count42 > count31) {
-                    county++;
-                }
-            }
-
-            return county;
+                return remainingMessage == "" && count42 > 0 && count31 > 0 && count42 > count31;
+            });
         }
     }
 }
