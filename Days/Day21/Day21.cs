@@ -28,7 +28,7 @@ namespace advent_of_code_2020.Days {
                         matchingIngredient = matchingIngredient.Intersect(restFood.Ingredients).ToArray();
                     }
                     matchingIngredient = matchingIngredient.Except(ingredients.Where(v => v.Value != string.Empty).Select(v => v.Key).ToList()).ToArray();
-                    if (matchingIngredient.Count() == 1) {
+                    if (matchingIngredient.Length == 1) {
                         ingredients[matchingIngredient.First()] = allergen;
                     }
                 }
