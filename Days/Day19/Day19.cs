@@ -83,7 +83,7 @@ namespace advent_of_code_2020.Days {
                     count31++;
                 }
 
-                return remainingMessage == "" && count42 > 0 && count31 > 0 && count42 > count31;
+                return remainingMessage == "" && count42 > count31 && count31 > 0;
             });
         }
     }
