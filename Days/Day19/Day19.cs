@@ -37,7 +37,6 @@ namespace advent_of_code_2020.Days {
                 return rule
                     .Split(" | ")
                     .SelectMany(subrule => RuleOptions(subrule, rules))
-                    .Where(cc => !string.IsNullOrEmpty(cc))
                     .ToList();
             }
 
@@ -46,11 +45,7 @@ namespace advent_of_code_2020.Days {
                 .Select(int.Parse)
                 .Select(id => RuleOptions(rules[id], rules))
                 .Aggregate((sum, current) => sum
-                    .Where(ss => !string.IsNullOrEmpty(ss))
-                    .SelectMany(s => current
-                        .Where(cc => !string.IsNullOrEmpty(cc))
-                        .Select(c => s + c)
-                    )
+                    .SelectMany(s => current.Select(c => s + c))
                     .ToList()
                 );
         }
