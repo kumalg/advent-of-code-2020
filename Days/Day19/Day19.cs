@@ -45,14 +45,11 @@ namespace advent_of_code_2020.Days {
                 .Split(" ")
                 .Select(int.Parse)
                 .Select(id => RuleOptions(rules[id], rules))
-                .ToList()
                 .Aggregate((sum, current) => sum
                     .Where(ss => !string.IsNullOrEmpty(ss))
                     .SelectMany(s => current
                         .Where(cc => !string.IsNullOrEmpty(cc))
-                        .Distinct()
                         .Select(c => s + c)
-                        .ToList()
                     )
                     .ToList()
                 );
