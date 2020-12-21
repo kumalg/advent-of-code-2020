@@ -6,7 +6,7 @@ namespace advent_of_code_2020.Days {
     public class Day19 : Day<int> {
         private static readonly Regex RuleLineRegex = new Regex(@"(\d+): (.+)");
 
-        private static (Dictionary<int, string> Rules, List<string> Messages) GetRulesAndMessages(string inputText) {
+        private static (IDictionary<int, string> Rules, IList<string> Messages) GetRulesAndMessages(string inputText) {
             var sections = inputText
                 .Split("\n\n")
                 .ToList();
@@ -28,7 +28,7 @@ namespace advent_of_code_2020.Days {
             return (rules, messages);
         }
 
-        private static IList<string> RuleOptions( string rule, Dictionary<int, string> rules) {
+        private static IList<string> RuleOptions(string rule, IDictionary<int, string> rules) {
             if (rule.StartsWith("\"")) {
                 return new List<string>() { rule.Replace("\"", "") };
             }
