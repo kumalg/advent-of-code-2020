@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace advent_of_code_2020.Days.Day04 {
+namespace advent_of_code_2020.Days {
     public class Day04 : Day<int> {
         private static readonly string[] mandatoryFields = new[] { "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid" };
         private static readonly Regex eclRegex = new Regex(@"^((amb)|(blu)|(brn)|(gry)|(grn)|(hzl)|(oth))$");

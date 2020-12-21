@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace advent_of_code_2020.Days.Day05 {
+namespace advent_of_code_2020.Days {
     public class Day05 : Day<int> {
         private static readonly int Rows = 128;
         private static readonly int Columns = 8;

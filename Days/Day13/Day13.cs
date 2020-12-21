@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace advent_of_code_2020.Days.Day13 {
+namespace advent_of_code_2020.Days {
     public class Day13 : Day<long> {
         public override long FirstStar() {
             var earliest = int.Parse(InputLines.First());

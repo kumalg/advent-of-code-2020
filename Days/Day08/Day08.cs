@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace advent_of_code_2020.Days.Day08 {
+namespace advent_of_code_2020.Days {
     public class Day08 : Day<int> {
 
         public override int FirstStar() {

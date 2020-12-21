@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace advent_of_code_2020.Days.Day07 {
+namespace advent_of_code_2020.Days {
     public class Day07 : Day<int> {
         static readonly Regex MainRegex = new Regex(@"(.+) (?:bags contain) (.+)[.]");
         static readonly Regex LineRegex = new Regex(@"(\d+) (.+) bag(?:s|)");

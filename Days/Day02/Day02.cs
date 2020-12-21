@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace advent_of_code_2020.Days.Day02 {
+namespace advent_of_code_2020.Days {
     public class Day02 : Day<int> {
         private static readonly Regex regex = new Regex(@"(\d+)-(\d+) (\w): (\w+)");
         private IEnumerable<(int a, int b, char letter, string password)> Input => InputLines

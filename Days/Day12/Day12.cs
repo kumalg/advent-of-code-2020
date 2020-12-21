@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace advent_of_code_2020.Days.Day12 {
+namespace advent_of_code_2020.Days {
     public class Day12 : Day<long> {
         private enum Direction {
             North = 0,

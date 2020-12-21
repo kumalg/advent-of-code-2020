@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace advent_of_code_2020.Days.Day03 {
+namespace advent_of_code_2020.Days {
     public class Day03 : Day<long> {
         private long TreesForSlope((int right, int down) slope) => InputLines
             .Where((line, index) => index % slope.down == 0 && index != 0)

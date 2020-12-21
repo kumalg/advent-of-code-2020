@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace advent_of_code_2020.Days.Day09 {
+namespace advent_of_code_2020.Days {
     public class Day09 : Day<long> {
 
         public override long FirstStar() {

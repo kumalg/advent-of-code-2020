@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace advent_of_code_2020.Days.Day11 {
+namespace advent_of_code_2020.Days {
     public class Day11 : Day<long> {
         private enum SeatType {
             Occupied,

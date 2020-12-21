@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace advent_of_code_2020.Days.Day01 {
+namespace advent_of_code_2020.Days {
     public class Day01 : Day<int> {
         public override int FirstStar() {
             var report = InputLines.Select(int.Parse);
