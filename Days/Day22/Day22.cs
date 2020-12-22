@@ -17,7 +17,7 @@ namespace advent_of_code_2020.Days {
             })
             .ToArray();
 
-        private static string RoundToString(Player[] players) => string.Join("", players.Select(p => $"({string.Join("|", p.Cards)})"));
+        private static string RoundToString(Player[] players) => string.Join("", players.Select(p => $"({ string.Join("|", p.Cards) })"));
 
         private (Player Winner, Player Looser) PlayGame(Player[] players, bool withSubGames) {
             var playedGames = new HashSet<string>();
