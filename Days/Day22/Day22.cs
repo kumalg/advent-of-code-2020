@@ -46,7 +46,9 @@ namespace advent_of_code_2020.Days {
                     player.Cards.RemoveAt(0);
                 }
 
-                players.First(p => p.Id == result.Winner.Id).Cards.AddRange(new[] { topCards[result.Winner.Id], topCards[result.Looser.Id] });
+                var winnerCards = players.First(p => p.Id == result.Winner.Id).Cards;
+                winnerCards.Add(topCards[result.Winner.Id]);
+                winnerCards.Add(topCards[result.Looser.Id]);
             }
 
             var resultedOrder = players.OrderByDescending(p => p.Cards.Count).ToArray();
